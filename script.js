@@ -1,5 +1,5 @@
 
-const target = new Date("2026-10-30T00:00:00+05:00").getTime();
+const target = new Date("2026-10-30T20:00:00+05:00").getTime();
 function updateCountdown(){
   const now = Date.now(), diff = Math.max(0,target-now);
   const d=Math.floor(diff/86400000), h=Math.floor(diff%86400000/3600000),
