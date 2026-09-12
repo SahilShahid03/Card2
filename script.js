@@ -40,3 +40,75 @@ document.addEventListener("DOMContentLoaded",()=>{
     if(a.getAttribute("href")===page)a.classList.add("active");
   });
 });
+/* =========================
+   RESPONSIVE MOBILE MENU
+========================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const menuBtn = document.querySelector(".menu-btn");
+  const nav = document.querySelector(".nav");
+
+  if (!menuBtn || !nav) return;
+
+
+  /* Open / Close menu */
+
+  menuBtn.addEventListener("click", () => {
+
+    const isOpen = nav.classList.toggle("open");
+
+    menuBtn.setAttribute(
+      "aria-expanded",
+      String(isOpen)
+    );
+
+    menuBtn.setAttribute(
+      "aria-label",
+      isOpen
+        ? "Close navigation menu"
+        : "Open navigation menu"
+    );
+
+  });
+
+
+  /* Close menu after selecting a page */
+
+  nav.querySelectorAll("a").forEach(link => {
+
+    link.addEventListener("click", () => {
+
+      nav.classList.remove("open");
+
+      menuBtn.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+
+    });
+
+  });
+
+
+  /* Close menu when clicking outside */
+
+  document.addEventListener("click", (event) => {
+
+    if (
+      !nav.contains(event.target) &&
+      !menuBtn.contains(event.target)
+    ) {
+
+      nav.classList.remove("open");
+
+      menuBtn.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+
+    }
+
+  });
+
+});
